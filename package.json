@@ -1,6 +1,6 @@
 {
-  "name": "semantic-release-slack-bot",
-  "version": "0.0.0-semantically-released",
+  "name": "@timebyping/semantic-release-slack-bot",
+  "version": "4.0.2",
   "description": "A slack bot for semantic-release notifying release statuses",
   "main": "index.js",
   "private": false,
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@semantic-release/error": "^2.2.0",
-    "micromatch": "4.0.8",
+    "micromatch": "^4.0.8",
     "node-fetch": "^2.3.0",
     "slackify-markdown": "^4.3.0"
   },
