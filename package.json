@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A slack bot for semantic-release notifying release statuses",
   "private": false,
+  "type": "module",
   "keywords": [
     "semantic-release",
     "slack",
