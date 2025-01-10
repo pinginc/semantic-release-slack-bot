@@ -78,6 +78,7 @@ describe('test verifyConditions', () => {
       env: {}
     }
     const defaultPluginConfig = { packageName: 'test' }
+    // eslint-disable-next-line no-unused-vars
     const getMissingTokenError = slackTokenEnVar => {
       return `A Slack Token must be created and set in the \`${slackTokenEnVar}\` environment variable on your CI environment.\n\n\nPlease make sure to create a Slack Token and to set it in the \`${slackTokenEnVar}\` environment variable on your CI environment. Alternatively, provide \`slackToken\` as a configuration option.`
     }

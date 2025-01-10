@@ -1,6 +1,6 @@
 import { equal } from 'assert'
 import getRepoInfo from '../lib/getRepoInfo.js'
-
+import { describe, it } from 'mocha'
 const runAssert = (repoUrl, path, url, hostname) => {
   const actual = getRepoInfo(repoUrl)
 

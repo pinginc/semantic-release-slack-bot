@@ -2,6 +2,7 @@ import { deepStrictEqual, strictEqual } from 'assert'
 import proxyquire from 'proxyquire'
 import { stub } from 'sinon'
 import { getBaseConfig, getContext } from './testUtils.js'
+import { describe, it, beforeEach } from 'mocha'
 
 process.env.SLACK_WEBHOOK = 'awebhook'
 
@@ -49,6 +50,7 @@ describe('test fail', () => {
     const text = 'Released!'
     const expectedResult = { text }
     const pluginConfig = getBaseConfig(packageName)
+    // eslint-disable-next-line no-unused-vars
     const onFailFunction = (pluginConfig, context) => {
       return expectedResult
     }

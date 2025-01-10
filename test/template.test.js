@@ -1,5 +1,6 @@
 import { equal, deepEqual } from 'assert'
 import template from '../lib/template.js'
+import { describe, it } from 'mocha'
 
 describe('test template', () => {
   it('should replace variable in string if present', () => {

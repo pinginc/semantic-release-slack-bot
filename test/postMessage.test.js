@@ -2,6 +2,7 @@ import { ifError, rejects } from 'assert'
 import nock from 'nock'
 import postMessage from '../lib/postMessage.js'
 import SemanticReleaseError from '@semantic-release/error'
+import { describe, it } from 'mocha'
 
 const slackWebhook = 'https://www.webhook.com'
 const slackPostMessageDomain = 'https://slack.com'

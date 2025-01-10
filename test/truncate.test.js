@@ -1,6 +1,6 @@
 import { equal } from 'assert'
 import truncate from '../lib/truncate.js'
-
+import { describe, it } from 'mocha'
 describe('test truncate', () => {
   it('should not fail with empty message', () => {
     const expected = ''
