@@ -5,16 +5,60 @@
  * infringement of Time By Ping Inc.’s exclusive rights under the Copyright Law
  * of the U.S. (17 U.S.C. § 106) and may subject the infringer thereof to
  * severe legal liability.*/
-const getConfigToUse = require('./getConfigToUse');
-const postMessage = require('./postMessage');
-const template = require('./template');
-const getSlackVars = require('./getSlackVars');
 
-module.exports = async (pluginConfig, context) => {
+import { getConfigToUse } from './getConfigToUse';
+import { postMessage } from './postMessage';
+import { template } from './template';
+import { getSlackVars } from './getSlackVars';
+
+interface Context {
+  logger: {
+    log: (message: string) => void;
+  };
+  options: {
+    repositoryUrl: string;
+  };
+  errors: Error[];
+  env: {
+    SEMANTIC_RELEASE_PACKAGE?: string;
+    npm_package_name?: string;
+  };
+}
+
+interface PluginConfig {
+  notifyOnFail?: boolean;
+  onFailFunction?: (config: PluginConfig, context: Context) => SlackMessage;
+  onFailTemplate?: string;
+  packageName?: string;
+}
+
+interface SlackMessage {
+  attachments?: Array<{
+    blocks?: Array<Block>;
+    color?: string;
+  }>;
+  blocks?: Array<Block>;
+  text?: string;
+}
+
+interface Block {
+  type: string;
+  text?: {
+    text: string;
+    type: string;
+  };
+  elements?: Array<{
+    text: string;
+    type: string;
+  }>;
+}
+
+export = async (pluginConfig: PluginConfig, context: Context): Promise<void> => {
   const {
     logger,
     options,
     errors,
+    // eslint-disable-next-line camelcase
     env: { SEMANTIC_RELEASE_PACKAGE, npm_package_name },
   } = context;
 
