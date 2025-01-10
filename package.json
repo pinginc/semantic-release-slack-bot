@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
-    "lint": "eslint . lib --fix --max-warnings=0",
+    "lint": "eslint index.js lib --fix --max-warnings=0",
     "prepublishOnly": "yarn run build",
     "build": "echo 'no build'",
     "test": "mocha"
