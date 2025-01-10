@@ -1,5 +1,0 @@
-{
-  "extends": [
-    "@timebyping/eslint-config"
-  ]
-}
