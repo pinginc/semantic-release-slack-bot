@@ -17,7 +17,7 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src test --fix --max-warnings=0",
     "prepublishOnly": "yarn run build",
-    "build": "echo 'Nothing to build'",
+    "build": "tsc",
     "test": "mocha"
   },
   "dependencies": {
