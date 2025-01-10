@@ -34,7 +34,7 @@ describe('test postMessage with webhook', () => {
   })
 
   it('should fail if response text is not "ok"', async () => {
-    const response = 'not ok'
+    const response = ''
     nock(slackWebhook)
       .post('/')
       .reply(200, response)
