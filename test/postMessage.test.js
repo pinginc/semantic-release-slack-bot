@@ -45,7 +45,7 @@ describe('test postMessage with webhook', () => {
   })
 
   it('should fail if response status code is not 200', async () => {
-    const response = 'error message'
+    const response = '{"ok":false,"error":"invalid_auth"}'
     nock(slackWebhook)
       .post('/')
       .reply(500, response)
