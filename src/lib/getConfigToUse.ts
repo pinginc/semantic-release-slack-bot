@@ -5,9 +5,20 @@
  * infringement of Time By Ping Inc.’s exclusive rights under the Copyright Law
  * of the U.S. (17 U.S.C. § 106) and may subject the infringer thereof to
  * severe legal liability.*/
-const micromatch = require('micromatch');
+import { type Context } from 'semantic-release';
+import micromatch from 'micromatch';
 
-module.exports = (pluginConfig, context) => {
+interface BranchConfig {
+  pattern: string;
+  [key: string]: any;
+}
+
+interface PluginConfig {
+  branchesConfig?: BranchConfig[];
+  [key: string]: any;
+}
+
+export default (pluginConfig: PluginConfig, context: Context): PluginConfig => {
   const {
     branch: { name },
   } = context;
