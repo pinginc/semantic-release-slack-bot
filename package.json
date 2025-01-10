@@ -46,10 +46,6 @@
     "slackify-markdown": "^4.3.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^7.5.0",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-standard": "^12.0.0",
@@ -69,11 +65,6 @@
   },
   "peerDependencies": {
     "semantic-release": ">=11.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "husky": {
     "hooks": {
