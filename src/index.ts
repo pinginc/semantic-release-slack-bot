@@ -5,12 +5,8 @@
  * infringement of Time By Ping Inc.’s exclusive rights under the Copyright Law
  * of the U.S. (17 U.S.C. § 106) and may subject the infringer thereof to
  * severe legal liability.*/
-const verifyConditions = require('./lib/verifyConditions');
-const success = require('./lib/success');
-const fail = require('./lib/fail');
+import fail from './lib/fail';
+import success from './lib/success';
+import verifyConditions from './lib/verifyConditions';
 
-module.exports = {
-  fail,
-  success,
-  verifyConditions,
-};
+export { fail, success, verifyConditions };
