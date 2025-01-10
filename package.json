@@ -23,7 +23,6 @@
   "dependencies": {
     "@semantic-release/error": "^4.0.0",
     "micromatch": "^4.0.8",
-    "node-fetch": "^3.0.0",
     "slackify-markdown": "^4.3.0"
   },
   "devDependencies": {
