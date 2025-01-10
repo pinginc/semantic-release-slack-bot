@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert'
-import getConfigToUse from '../lib/getConfigToUse'
-import { getContext } from './testUtils'
+import getConfigToUse from '../lib/getConfigToUse.js'
+import { getContext } from './testUtils.js'
 
 describe('test getConfigToUse', () => {
   it('should return the global config when no branchesConfig', () => {

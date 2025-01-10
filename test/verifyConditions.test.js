@@ -1,8 +1,8 @@
 import SemanticReleaseError from '@semantic-release/error'
 import { throws } from 'assert'
-
-import verifyConditions from '../lib/verifyConditions'
-import { getContext } from './testUtils'
+import { describe, it, beforeEach } from 'mocha'
+import verifyConditions from '../lib/verifyConditions.js'
+import { getContext } from './testUtils.js'
 
 describe('test verifyConditions', () => {
   beforeEach(() => {

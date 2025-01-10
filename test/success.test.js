@@ -1,7 +1,7 @@
 import { deepStrictEqual, strictEqual } from 'assert'
 import proxyquire from 'proxyquire'
 import { stub } from 'sinon'
-import { getBaseConfig, getContext } from './testUtils'
+import { getBaseConfig, getContext } from './testUtils.js'
 
 process.env.SLACK_WEBHOOK = 'awebhook'
 

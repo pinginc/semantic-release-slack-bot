@@ -1,6 +1,6 @@
 import { ifError, rejects } from 'assert'
 import nock from 'nock'
-import postMessage from '../lib/postMessage'
+import postMessage from '../lib/postMessage.js'
 import SemanticReleaseError from '@semantic-release/error'
 
 const slackWebhook = 'https://www.webhook.com'

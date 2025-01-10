@@ -1,5 +1,5 @@
 import { equal, deepEqual } from 'assert'
-import template from '../lib/template'
+import template from '../lib/template.js'
 
 describe('test template', () => {
   it('should replace variable in string if present', () => {

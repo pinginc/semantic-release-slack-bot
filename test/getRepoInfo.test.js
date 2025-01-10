@@ -1,5 +1,5 @@
 import { equal } from 'assert'
-import getRepoInfo from '../lib/getRepoInfo'
+import getRepoInfo from '../lib/getRepoInfo.js'
 
 const runAssert = (repoUrl, path, url, hostname) => {
   const actual = getRepoInfo(repoUrl)

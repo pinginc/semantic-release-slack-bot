@@ -1,5 +1,5 @@
 import { equal } from 'assert'
-import truncate from '../lib/truncate'
+import truncate from '../lib/truncate.js'
 
 describe('test truncate', () => {
   it('should not fail with empty message', () => {
