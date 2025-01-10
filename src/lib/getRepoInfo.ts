@@ -1,21 +1,25 @@
-const url = require('url')
+/* Copyright © Time By Ping, Inc. 2024. All rights reserved.
+ *
+ * Any unauthorized reproduction, distribution, public display, public
+ * performance or derivatization thereof can constitute, among other things, an
+ * infringement of Time By Ping Inc.’s exclusive rights under the Copyright Law
+ * of the U.S. (17 U.S.C. § 106) and may subject the infringer thereof to
+ * severe legal liability.*/
+const url = require('url');
 
-module.exports = repositoryUrl => {
+module.exports = (repositoryUrl) => {
   if (repositoryUrl.startsWith('git@')) {
-    repositoryUrl = 'ssh://' + repositoryUrl
+    repositoryUrl = 'ssh://' + repositoryUrl;
   }
   const parsedUrl = new url.URL(
     // without these replacements we will get a TypeError [ERR_INVALID_URL]
-    repositoryUrl.replace(
-      /\.([a-z])*:/i,
-      rep => rep.substring(0, rep.length - 1) + '/'
-    )
-  )
+    repositoryUrl.replace(/\.([a-z])*:/i, (rep) => rep.substring(0, rep.length - 1) + '/')
+  );
   const path = parsedUrl.pathname
     .substring(1) // remove leading "/"
     .replace('.git', '') // remove .git
-    .replace(':', '') // remove any colons from path (present in github for example)
-  const hostname = parsedUrl.hostname
-  const URL = `https://${parsedUrl.host}/${path}`
-  return { path, URL, hostname }
-}
+    .replace(':', ''); // remove any colons from path (present in github for example)
+  const { hostname } = parsedUrl;
+  const URL = `https://${parsedUrl.host}/${path}`;
+  return { hostname, path, URL };
+};
