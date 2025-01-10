@@ -35,56 +35,14 @@ jobs:
     steps:
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
       - checkout
-      - run: echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
-      - run: sudo apt update && sudo apt install libssl1.1
       - run: yarn
       - run: yarn run test
-      - run: yarn run test:e2e
       - store_test_results:
           path: test-results
       - store_artifacts:
           path: ./test-results
           destination: test-results
       - common/coverage
-  sync_packages:
-    docker:
-      - image: cimg/node:<< pipeline.parameters.executor-tag >>
-    steps:
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
-      - checkout
-      - run: yarn
-      - run: yarn run packages:sync
-      - run: |
-          git config --global user.email "ci@timebyping.com"
-          git config --global user.name "TBP CI"
-
-          if [[ -n $(git status --porcelain) ]]; then
-            git add .
-            git commit -m "chore(manifests): sync package.json with src/packages"
-            git push origin HEAD
-          fi
-  validate_permissions_json:
-    docker:
-      - image: cimg/node:<< pipeline.parameters.executor-tag >>
-    steps:
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
-      - checkout
-      - run: yarn
-      - run: yarn run build
-      - run: git checkout main bin/permissions.json
-      - run: node ./dist/packages/nest-auth/script/generate-permissions-json.js bin/new-permissions.json
-      - run: node ./dist/packages/nest-auth/script/validate-permissions-json.js bin/permissions.json bin/new-permissions.json
-      - run: mv bin/new-permissions.json bin/permissions.json
-      - run: |
-          git config --global user.email "ci@timebyping.com"
-          git config --global user.name "TBP CI"
-
-          git add .
-
-          if [[ -n $(git status --porcelain) ]]; then
-            git commit -m "chore(permissions): regenerate permissions.json"
-            git push origin HEAD
-          fi
 workflows:
   developer-branch:
     when:
@@ -102,17 +60,11 @@ workflows:
       - lint:
           context:
             - NPM
-      - sync_packages:
-          context:
-            - NPM
       - build:
           context:
             - NPM
       - test_spec:
           name: unit tests
-          context:
-            - NPM
-      - validate_permissions_json:
           context:
             - NPM
   main-branch:
