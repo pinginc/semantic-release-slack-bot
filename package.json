@@ -1,6 +1,6 @@
 {
-  "name": "semantic-release-slack-bot",
-  "version": "0.0.0-semantically-released",
+  "name": "@timebyping/semantic-release-slack-bot",
+  "version": "4.0.2",
   "description": "A slack bot for semantic-release notifying release statuses",
   "main": "index.js",
   "private": false,
@@ -10,10 +10,6 @@
   ],
   "engines": {
     "node": ">=18.13"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/juliuscc/semantic-release-slack-bot.git"
   },
   "keywords": [
     "semantic-release",
@@ -29,28 +25,19 @@
     "Hannes Rabo <hannes.rabo@gmail.com>"
   ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/juliuscc/semantic-release-slack-bot/issues"
-  },
-  "homepage": "https://github.com/juliuscc/semantic-release-slack-bot#readme",
   "scripts": {
-    "commit": "git-cz",
+    "build": "echo 'Nothing to build'",
     "lint": "eslint lib index.js",
     "prettier": "prettier --write --list-different '**/*.@(md|js?(on))'",
-    "semantic-release": "semantic-release",
     "test": "mocha"
   },
   "dependencies": {
     "@semantic-release/error": "^2.2.0",
-    "micromatch": "4.0.8",
+    "micromatch": "^4.0.8",
     "node-fetch": "^2.3.0",
     "slackify-markdown": "^4.3.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^7.5.0",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-standard": "^12.0.0",
@@ -59,8 +46,6 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5",
     "mocha": "^6.2.2",
     "nock": "^11.7.0",
     "prettier": "^1.16.4",
@@ -70,22 +55,6 @@
   },
   "peerDependencies": {
     "semantic-release": ">=11.0.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "eslintConfig": {
     "extends": [
