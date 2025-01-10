@@ -11,10 +11,6 @@
   "engines": {
     "node": ">=18.13"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/juliuscc/semantic-release-slack-bot.git"
-  },
   "keywords": [
     "semantic-release",
     "slack",
@@ -29,10 +25,6 @@
     "Hannes Rabo <hannes.rabo@gmail.com>"
   ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/juliuscc/semantic-release-slack-bot/issues"
-  },
-  "homepage": "https://github.com/juliuscc/semantic-release-slack-bot#readme",
   "scripts": {
     "build": "echo 'Nothing to build'",
     "lint": "eslint lib index.js",
@@ -54,8 +46,6 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5",
     "mocha": "^6.2.2",
     "nock": "^11.7.0",
     "prettier": "^1.16.4",
@@ -65,17 +55,6 @@
   },
   "peerDependencies": {
     "semantic-release": ">=11.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "eslintConfig": {
     "extends": [
