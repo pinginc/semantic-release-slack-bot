@@ -4,6 +4,11 @@
   "description": "A slack bot for semantic-release notifying release statuses",
   "private": false,
   "type": "module",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
   "keywords": [
     "semantic-release",
     "slack",
