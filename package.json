@@ -34,10 +34,9 @@
   },
   "homepage": "https://github.com/juliuscc/semantic-release-slack-bot#readme",
   "scripts": {
-    "commit": "git-cz",
+    "build": "echo 'Nothing to build'",
     "lint": "eslint lib index.js",
     "prettier": "prettier --write --list-different '**/*.@(md|js?(on))'",
-    "semantic-release": "semantic-release",
     "test": "mocha"
   },
   "dependencies": {
