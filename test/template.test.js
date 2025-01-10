@@ -1,30 +1,30 @@
-const assert = require('assert')
-const template = require('../lib/template')
+import { equal, deepEqual } from 'assert'
+import template from '../lib/template'
 
 describe('test template', () => {
   it('should replace variable in string if present', () => {
     const world = 'underworld'
     const expected = `hello ${world}`
     const actual = template('hello $world', { world })
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should not replace variable in string if not present', () => {
     const expected = 'hello $world'
     const actual = template('hello $world', { other: 'underworld' })
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should return string as is with no matching variables', () => {
     const expected = 'hello world'
     const actual = template(expected, { other: 'underworld' })
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should return string as is without any variables', () => {
     const expected = 'hello world'
     const actual = template(expected, {})
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should replace multiple variables in string if present', () => {
@@ -35,20 +35,20 @@ describe('test template', () => {
       world,
       home
     })
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should replace multiple identical variables in string', () => {
     const world = 'underworld'
     const expected = `hello ${world}, hello ${world}`
     const actual = template('hello $world, hello $world', { world })
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should replace variable in list', () => {
     const expected = 'underworld'
     const actual = template(['$world'], { world: expected })
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 
   it('should replace multiple variables in list', () => {
@@ -57,13 +57,13 @@ describe('test template', () => {
       world: expected[0],
       hello: expected[1]
     })
-    assert.deepEqual(expected, actual)
+    deepEqual(expected, actual)
   })
 
   it('should replace variable in object', () => {
     const expected = { hello: 'underworld' }
     const actual = template({ hello: '$world' }, { world: expected.hello })
-    assert.deepEqual(expected, actual)
+    deepEqual(expected, actual)
   })
 
   it('should replace multiple variables in object', () => {
@@ -71,7 +71,7 @@ describe('test template', () => {
     const home = 'back'
     const expected = { hello: `${world}, welcome ${home}` }
     const actual = template({ hello: '$world, welcome $home' }, { world, home })
-    assert.deepEqual(expected, actual)
+    deepEqual(expected, actual)
   })
 
   it('should replace variables only if present', () => {
@@ -86,7 +86,7 @@ describe('test template', () => {
       { hello: '$world, welcome $home', dimension: `${noVariables}` },
       { world, home }
     )
-    assert.deepEqual(expected, actual)
+    deepEqual(expected, actual)
   })
 
   it('should replace variables in all entries', () => {
@@ -100,12 +100,12 @@ describe('test template', () => {
       { hello: '$world', own: '$nothing' },
       { world, nothing }
     )
-    assert.deepEqual(expected, actual)
+    deepEqual(expected, actual)
   })
 
   it('should return default if neither string or object', () => {
     const expected = 123
     const actual = template(expected)
-    assert.equal(expected, actual)
+    equal(expected, actual)
   })
 })

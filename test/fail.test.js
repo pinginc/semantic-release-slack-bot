@@ -1,7 +1,7 @@
-const assert = require('assert')
-const proxyquire = require('proxyquire')
-const sinon = require('sinon')
-const { getBaseConfig, getContext } = require('./testUtils')
+import { deepStrictEqual, strictEqual } from 'assert'
+import proxyquire from 'proxyquire'
+import { stub } from 'sinon'
+import { getBaseConfig, getContext } from './testUtils'
 
 process.env.SLACK_WEBHOOK = 'awebhook'
 
@@ -10,7 +10,7 @@ let fail
 
 describe('test fail', () => {
   beforeEach(() => {
-    postMessageStub = sinon.stub()
+    postMessageStub = stub()
     fail = proxyquire('../lib/fail', {
       './postMessage': postMessageStub
     })
@@ -23,8 +23,8 @@ describe('test fail', () => {
     await fail(getBaseConfig(packageName), getContext())
 
     const result = postMessageStub.getCall(0).args[0]
-    assert.deepStrictEqual(Object.keys(result), expectedKeys)
-    assert.strictEqual(
+    deepStrictEqual(Object.keys(result), expectedKeys)
+    strictEqual(
       result.text,
       `An error occurred while trying to publish the new version of ${packageName}!`
     )
@@ -41,7 +41,7 @@ describe('test fail', () => {
     await fail(pluginConfig, getContext())
 
     const actualResult = postMessageStub.getCall(0).args[0]
-    assert.deepStrictEqual(actualResult, expectedResult)
+    deepStrictEqual(actualResult, expectedResult)
   })
 
   it('should handle onFailFunction', async () => {
@@ -58,6 +58,6 @@ describe('test fail', () => {
     await fail(pluginConfig, getContext())
 
     const actualResult = postMessageStub.getCall(0).args[0]
-    assert.deepStrictEqual(actualResult, expectedResult)
+    deepStrictEqual(actualResult, expectedResult)
   })
 })

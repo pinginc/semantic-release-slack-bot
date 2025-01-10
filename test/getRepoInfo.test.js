@@ -1,12 +1,12 @@
-const assert = require('assert')
-const getRepoInfo = require('../lib/getRepoInfo')
+import { equal } from 'assert'
+import getRepoInfo from '../lib/getRepoInfo'
 
 const runAssert = (repoUrl, path, url, hostname) => {
   const actual = getRepoInfo(repoUrl)
 
-  assert.equal(path, actual.path)
-  assert.equal(url, actual.URL)
-  assert.equal(hostname, actual.hostname)
+  equal(path, actual.path)
+  equal(url, actual.URL)
+  equal(hostname, actual.hostname)
 }
 
 describe('test getRepoInfo', () => {

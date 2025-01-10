@@ -1,8 +1,7 @@
-const assert = require('assert')
-const { get } = require('https')
-const proxyquire = require('proxyquire')
-const sinon = require('sinon')
-const { getBaseConfig, getContext } = require('./testUtils')
+import { deepStrictEqual, strictEqual } from 'assert'
+import proxyquire from 'proxyquire'
+import { stub } from 'sinon'
+import { getBaseConfig, getContext } from './testUtils'
 
 process.env.SLACK_WEBHOOK = 'awebhook'
 
@@ -11,7 +10,7 @@ let success
 
 describe('test success', () => {
   beforeEach(() => {
-    postMessageStub = sinon.stub()
+    postMessageStub = stub()
     success = proxyquire('../lib/success', {
       './postMessage': postMessageStub
     })
@@ -24,8 +23,8 @@ describe('test success', () => {
     await success(getBaseConfig(packageName), getContext())
 
     const result = postMessageStub.getCall(0).args[0]
-    assert.deepStrictEqual(Object.keys(result), expectedKeys)
-    assert.strictEqual(
+    deepStrictEqual(Object.keys(result), expectedKeys)
+    strictEqual(
       result.text,
       `A new version of ${packageName} has been released!`
     )
@@ -42,7 +41,7 @@ describe('test success', () => {
     await success(pluginConfig, getContext())
 
     const actualResult = postMessageStub.getCall(0).args[0]
-    assert.deepStrictEqual(actualResult, expectedResult)
+    deepStrictEqual(actualResult, expectedResult)
   })
 
   it('should handle onSuccessFunction', async () => {
@@ -59,6 +58,6 @@ describe('test success', () => {
     await success(pluginConfig, getContext())
 
     const actualResult = postMessageStub.getCall(0).args[0]
-    assert.deepStrictEqual(actualResult, expectedResult)
+    deepStrictEqual(actualResult, expectedResult)
   })
 })

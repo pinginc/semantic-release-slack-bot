@@ -1,6 +1,6 @@
-const assert = require('assert')
-const { delimiter } = require('path')
-const { chunkifyArray, chunkifyString } = require('../lib/chunkifier')
+import { deepStrictEqual } from 'assert'
+import { delimiter } from 'path'
+import { chunkifyArray, chunkifyString } from '../lib/chunkifier'
 
 const DEFAULT_DELIMITER = '\n'
 const MAX_LENGTH = 30
@@ -9,7 +9,7 @@ describe('test chunkifyArray', () => {
   it('should not fail on empty messageLines', () => {
     const expected = []
     const actual = chunkifyArray(expected, MAX_LENGTH)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should return only one chunk if message is <= maxLength', () => {
@@ -18,7 +18,7 @@ describe('test chunkifyArray', () => {
       expected,
       (expected[0] + DEFAULT_DELIMITER).length
     )
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should capture last chunk', () => {
@@ -27,7 +27,7 @@ describe('test chunkifyArray', () => {
     )
     const expected = ['hello world\nhere we come', 'to rule']
     const actual = chunkifyArray(messageLines, MAX_LENGTH)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should trim trailing newlines', () => {
@@ -36,7 +36,7 @@ describe('test chunkifyArray', () => {
     )
     const expected = ['hello world\n\nhere we come', 'to rule']
     const actual = chunkifyArray(messageLines, MAX_LENGTH)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should handle non-default delimiter', () => {
@@ -44,7 +44,7 @@ describe('test chunkifyArray', () => {
     const messageLines = 'hello world\nhere we come\nto rule\n'.split(delimiter)
     const expected = ['hello world\nhere we come\nto', 'rule']
     const actual = chunkifyArray(messageLines, MAX_LENGTH, delimiter)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 })
 
@@ -53,7 +53,7 @@ describe('test chunkifyString', () => {
     const messageText = ''
     const expected = [messageText]
     const actual = chunkifyString(messageText, MAX_LENGTH)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should return only one chunk if message is <= maxLength', () => {
@@ -62,27 +62,27 @@ describe('test chunkifyString', () => {
       expected,
       (expected + DEFAULT_DELIMITER).length
     )
-    assert.deepStrictEqual(actual, [expected])
+    deepStrictEqual(actual, [expected])
   })
 
   it('should capture last chunk', () => {
     const messageText = 'hello world\nhere we come\nto rule'
     const expected = ['hello world\nhere we come', 'to rule']
     const actual = chunkifyString(messageText, MAX_LENGTH)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should trim trailing newlines', () => {
     const messageText = 'hello world\n\nhere we come\n\nto rule\n\n'
     const expected = ['hello world\n\nhere we come', 'to rule']
     const actual = chunkifyString(messageText, MAX_LENGTH)
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 
   it('should handle non-default delimiter', () => {
     const messageText = 'hello world\nhere we come\nto rule\n'
     const expected = ['hello world\nhere we come\nto', 'rule']
     const actual = chunkifyString(messageText, MAX_LENGTH, ' ')
-    assert.deepStrictEqual(actual, expected)
+    deepStrictEqual(actual, expected)
   })
 })

@@ -30,7 +30,7 @@ const getContext = (branchName = 'master') => {
   }
 }
 
-module.exports = {
+export default {
   getBaseConfig,
   getContext
 }

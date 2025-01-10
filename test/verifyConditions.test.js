@@ -1,8 +1,8 @@
-const SemanticReleaseError = require('@semantic-release/error')
-const assert = require('assert')
+import SemanticReleaseError from '@semantic-release/error'
+import { throws } from 'assert'
 
-const verifyConditions = require('../lib/verifyConditions')
-const { getContext } = require('./testUtils')
+import verifyConditions from '../lib/verifyConditions'
+import { getContext } from './testUtils'
 
 describe('test verifyConditions', () => {
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe('test verifyConditions', () => {
     }
 
     it('should throw if neither slackWebhook and environment variable SLACK_WEBHOOK are set', () => {
-      assert.throws(
+      throws(
         () => verifyConditions(defaultPluginConfig, fakeContext),
         new SemanticReleaseError(
           'No Slack web-hook defined.',
@@ -36,7 +36,7 @@ describe('test verifyConditions', () => {
     })
 
     it('should throw if slackWebhook is not set and slackWebhookEnVar give an empty environment variable', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             { ...defaultPluginConfig, slackWebhookEnVar: 'CUSTOM_WEBHOOK' },
@@ -86,7 +86,7 @@ describe('test verifyConditions', () => {
     }
 
     it('should throw if neither slackChannel and environment variable SLACK_CHANNEL are set but slackToken is', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             { ...defaultPluginConfig, slackToken: 'some token' },
@@ -101,7 +101,7 @@ describe('test verifyConditions', () => {
     })
 
     it('should throw if slackToken is set, slackChannel is not set and slackChannelEnVar give an empty environment variable', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             {
@@ -157,7 +157,7 @@ describe('test verifyConditions', () => {
     }
 
     it('should throw if branchesConfig is not an array', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             { ...defaultPluginConfig, branchesConfig: {} },
@@ -172,7 +172,7 @@ describe('test verifyConditions', () => {
     })
 
     it('should throw if branchesConfig do not contain a pattern', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             {
