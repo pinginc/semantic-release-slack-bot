@@ -1,6 +1,6 @@
 import { deepStrictEqual } from 'assert'
 import { delimiter } from 'path'
-import { chunkifyArray, chunkifyString } from '../lib/chunkifier'
+import { chunkifyArray, chunkifyString } from '../lib/chunkifier.js'
 
 const DEFAULT_DELIMITER = '\n'
 const MAX_LENGTH = 30
