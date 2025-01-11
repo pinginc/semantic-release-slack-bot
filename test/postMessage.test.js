@@ -11,7 +11,7 @@ const slackToken = 'token'
 const slackChannel = 'channel'
 
 async function postWebhook(url) {
-  await postMessage('message', {}, { slackWebhook: url })
+  await postMessage('message', { log: console.log }, { slackWebhook: url })
 }
 
 async function postToken(token, channel) {
