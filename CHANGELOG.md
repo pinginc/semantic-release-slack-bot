@@ -3,6 +3,19 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.1](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.0...v1.1.1) (2025-01-11)
+
+### Bug Fixes
+
+* incorrect tests and messaging 4e20d70
+* invalid imports 27da330
+
+### Other
+
+* manual bump 8ec9e06
+* remove deps 6713f1e
+* simplify slack 01d7a5d
+
 ## [1.1.0](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.0.0...v1.1.0) (2025-01-11)
 
 ### Features
