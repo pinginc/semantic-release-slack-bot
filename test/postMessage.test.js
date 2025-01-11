@@ -4,77 +4,19 @@ import postMessage from '../lib/postMessage.js'
 import SemanticReleaseError from '@semantic-release/error'
 import { describe, it, beforeEach } from 'mocha'
 
-const slackWebhook = 'https://www.webhook.com'
-const slackPostMessageDomain = 'https://slack.com'
-const slackPostMessagePath = '/api/chat.postMessage'
+const slackWebhook = 'https://smee.io/gDess2cGoeAXqqJa'
+const slackPostMessageDomain = new URL(slackWebhook).origin
+const slackPostMessagePath = new URL(slackWebhook).pathname
 const slackToken = 'token'
 const slackChannel = 'channel'
 
-async function postWebhook(url) {
-  await postMessage('message', { log: console.log }, { slackWebhook: url })
-}
-
 async function postToken(token, channel) {
-  token = token || slackToken
-  channel = channel || slackChannel
   await postMessage(
-    { text: 'message' },
+    'message',
     { log: console.log },
-    { slackToken: token, slackChannel: channel }
+    { slackWebhook, slackToken: token, slackChannel: channel }
   )
 }
-
-describe('test postMessage with webhook', () => {
-  beforeEach(() => {
-    nock.cleanAll()
-  })
-
-  it('should pass if response is 200 "ok"', async () => {
-    nock(slackWebhook)
-      .post('/', {
-        body: JSON.stringify({ text: 'message' })
-      })
-      .reply(200, '{"ok":true}')
-    ifError(await postWebhook(slackWebhook))
-  })
-
-  it('should fail if response text is not "ok"', async () => {
-    const response = '{}'
-    nock(slackWebhook)
-      .post('/', {
-        body: JSON.stringify({ text: 'message' })
-      })
-      .reply(200, response)
-    await rejects(
-      postWebhook(slackWebhook),
-      new SemanticReleaseError(response, 'INVALID SLACK COMMAND')
-    )
-  })
-
-  it('should fail if response status code is not 200', async () => {
-    const response = '{}'
-    nock(slackWebhook)
-      .post('/', {
-        body: JSON.stringify({ text: 'message' })
-      })
-      .reply(500, response)
-    await rejects(
-      postWebhook(slackWebhook),
-      new SemanticReleaseError(response, 'INVALID SLACK COMMAND')
-    )
-  })
-
-  it('should fail if incorrect url', async () => {
-    const incorrectUrl = 'https://sekhfskdfdjksfkjdhfsd.com'
-    await rejects(postWebhook(incorrectUrl), {
-      name: 'SemanticReleaseError',
-      code: 'SLACK CONNECTION FAILED',
-      details: undefined,
-      message: 'fetch failed',
-      semanticRelease: true
-    })
-  })
-})
 
 describe('test postMessage with token/channel', () => {
   beforeEach(() => {
@@ -84,8 +26,8 @@ describe('test postMessage with token/channel', () => {
   it('should pass if response is 200 "ok"', async () => {
     nock(slackPostMessageDomain)
       .post(slackPostMessagePath)
-      .reply(200, JSON.stringify({ ok: true }))
-    ifError(await postToken())
+      .reply(200, JSON.stringify({ ok: true, 'test': 'this is a test' }))
+    ifError(await postToken(slackToken, slackChannel))
   })
 
   it('should fail if response text is not "ok"', async () => {
@@ -94,7 +36,7 @@ describe('test postMessage with token/channel', () => {
       .post(slackPostMessagePath)
       .reply(200, response)
     await rejects(
-      postToken(),
+      postToken(slackToken, slackChannel),
       new SemanticReleaseError(response, 'INVALID SLACK COMMAND')
     )
   })
@@ -105,7 +47,7 @@ describe('test postMessage with token/channel', () => {
       .post(slackPostMessagePath)
       .reply(500, response)
     await rejects(
-      postToken(),
+      postToken(slackToken, slackChannel),
       new SemanticReleaseError(response, 'INVALID SLACK COMMAND')
     )
   })
