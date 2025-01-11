@@ -67,6 +67,7 @@ workflows:
           name: unit tests
           context:
             - NPM
+            - SLACK
   main-branch:
     when:
       equal:
@@ -86,6 +87,7 @@ workflows:
           name: unit tests
           context:
             - NPM
+            - SLACK
       - common/semantic-release:
           name: semantic release
           requires:

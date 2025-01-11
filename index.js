@@ -1,8 +1,8 @@
-const verifyConditions = require('./lib/verifyConditions')
-const success = require('./lib/success')
-const fail = require('./lib/fail')
+import verifyConditions from './lib/verifyConditions'
+import success from './lib/success'
+import fail from './lib/fail'
 
-module.exports = {
+export default {
   verifyConditions,
   success,
   fail

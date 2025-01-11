@@ -1,8 +1,8 @@
-const SemanticReleaseError = require('@semantic-release/error')
-const assert = require('assert')
-
-const verifyConditions = require('../lib/verifyConditions')
-const { getContext } = require('./testUtils')
+import SemanticReleaseError from '@semantic-release/error'
+import { throws } from 'assert'
+import { describe, it, beforeEach } from 'mocha'
+import verifyConditions from '../lib/verifyConditions.js'
+import { getContext } from './testUtils.js'
 
 describe('test verifyConditions', () => {
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe('test verifyConditions', () => {
     }
 
     it('should throw if neither slackWebhook and environment variable SLACK_WEBHOOK are set', () => {
-      assert.throws(
+      throws(
         () => verifyConditions(defaultPluginConfig, fakeContext),
         new SemanticReleaseError(
           'No Slack web-hook defined.',
@@ -36,7 +36,7 @@ describe('test verifyConditions', () => {
     })
 
     it('should throw if slackWebhook is not set and slackWebhookEnVar give an empty environment variable', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             { ...defaultPluginConfig, slackWebhookEnVar: 'CUSTOM_WEBHOOK' },
@@ -78,6 +78,7 @@ describe('test verifyConditions', () => {
       env: {}
     }
     const defaultPluginConfig = { packageName: 'test' }
+    // eslint-disable-next-line no-unused-vars
     const getMissingTokenError = slackTokenEnVar => {
       return `A Slack Token must be created and set in the \`${slackTokenEnVar}\` environment variable on your CI environment.\n\n\nPlease make sure to create a Slack Token and to set it in the \`${slackTokenEnVar}\` environment variable on your CI environment. Alternatively, provide \`slackToken\` as a configuration option.`
     }
@@ -86,7 +87,7 @@ describe('test verifyConditions', () => {
     }
 
     it('should throw if neither slackChannel and environment variable SLACK_CHANNEL are set but slackToken is', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             { ...defaultPluginConfig, slackToken: 'some token' },
@@ -101,7 +102,7 @@ describe('test verifyConditions', () => {
     })
 
     it('should throw if slackToken is set, slackChannel is not set and slackChannelEnVar give an empty environment variable', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             {
@@ -157,7 +158,7 @@ describe('test verifyConditions', () => {
     }
 
     it('should throw if branchesConfig is not an array', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             { ...defaultPluginConfig, branchesConfig: {} },
@@ -172,7 +173,7 @@ describe('test verifyConditions', () => {
     })
 
     it('should throw if branchesConfig do not contain a pattern', () => {
-      assert.throws(
+      throws(
         () =>
           verifyConditions(
             {

@@ -1,6 +1,7 @@
-const assert = require('assert')
-const getConfigToUse = require('../lib/getConfigToUse')
-const { getContext } = require('./testUtils')
+import { deepEqual } from 'assert'
+import getConfigToUse from '../lib/getConfigToUse.js'
+import { getContext } from './testUtils.js'
+import { describe, it } from 'mocha'
 
 describe('test getConfigToUse', () => {
   it('should return the global config when no branchesConfig', () => {
@@ -12,7 +13,7 @@ describe('test getConfigToUse', () => {
     const expectedConfig = pluginConfig
 
     const actual = getConfigToUse(pluginConfig, context)
-    assert.deepEqual(actual, expectedConfig)
+    deepEqual(actual, expectedConfig)
   })
 
   it('should return the branch config merged with the global config when branchesConfig match the branch', () => {
@@ -35,7 +36,7 @@ describe('test getConfigToUse', () => {
     }
 
     const actual = getConfigToUse(pluginConfig, context)
-    assert.deepEqual(actual, expectedConfig)
+    deepEqual(actual, expectedConfig)
   })
 
   it('should return the global config when no branchesConfig match the branch name', () => {
@@ -58,6 +59,6 @@ describe('test getConfigToUse', () => {
     }
 
     const actual = getConfigToUse(pluginConfig, context)
-    assert.deepEqual(actual, expectedConfig)
+    deepEqual(actual, expectedConfig)
   })
 })

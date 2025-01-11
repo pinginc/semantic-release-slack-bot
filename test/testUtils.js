@@ -1,4 +1,4 @@
-const getBaseConfig = packageName => {
+export const getBaseConfig = packageName => {
   return {
     notifyOnSuccess: true,
     notifyOnFail: true,
@@ -7,7 +7,7 @@ const getBaseConfig = packageName => {
   }
 }
 
-const getContext = (branchName = 'master') => {
+export const getContext = (branchName = 'master') => {
   const version = '1.0.0'
   return {
     logger: console,
@@ -28,9 +28,4 @@ const getContext = (branchName = 'master') => {
       name: branchName
     }
   }
-}
-
-module.exports = {
-  getBaseConfig,
-  getContext
 }
