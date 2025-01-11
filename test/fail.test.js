@@ -12,8 +12,8 @@ let fail
 describe('test fail', () => {
   beforeEach(() => {
     postMessageStub = stub()
-    fail = proxyquire('../lib/fail', {
-      './postMessage': postMessageStub
+    fail = proxyquire('../lib/fail.js', {
+      './postMessage.js': postMessageStub
     })
   })
 

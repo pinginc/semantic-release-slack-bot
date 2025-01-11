@@ -31,15 +31,19 @@ describe('test postMessage with webhook', () => {
 
   it('should pass if response is 200 "ok"', async () => {
     nock(slackWebhook)
-      .post('/')
-      .reply(200, 'ok')
+      .post('/', {
+        body: JSON.stringify({ text: 'message' })
+      })
+      .reply(200, '{"ok":true}')
     ifError(await postWebhook(slackWebhook))
   })
 
   it('should fail if response text is not "ok"', async () => {
-    const response = ''
+    const response = '{}'
     nock(slackWebhook)
-      .post('/')
+      .post('/', {
+        body: JSON.stringify({ text: 'message' })
+      })
       .reply(200, response)
     await rejects(
       postWebhook(slackWebhook),
@@ -48,9 +52,11 @@ describe('test postMessage with webhook', () => {
   })
 
   it('should fail if response status code is not 200', async () => {
-    const response = ''
+    const response = '{}'
     nock(slackWebhook)
-      .post('/')
+      .post('/', {
+        body: JSON.stringify({ text: 'message' })
+      })
       .reply(500, response)
     await rejects(
       postWebhook(slackWebhook),
