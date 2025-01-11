@@ -45,7 +45,7 @@ describe('test postMessage with webhook', () => {
   })
 
   it('should fail if response status code is not 200', async () => {
-    const response = '{"ok":false,"error":"invalid_auth"}'
+    const response = ''
     nock(slackWebhook)
       .post('/')
       .reply(500, response)
@@ -61,7 +61,7 @@ describe('test postMessage with webhook', () => {
       name: 'SemanticReleaseError',
       code: 'SLACK CONNECTION FAILED',
       details: undefined,
-      message: /ENOTFOUND/,
+      message: 'fetch failed',
       semanticRelease: true
     })
   })
