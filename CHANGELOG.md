@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.0](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.0.0...v1.1.0) (2025-01-11)
+
+### Features
+
+* OWL-2911: Upgrade All Packages ([#5](https://github.com/pinginc/semantic-release-slack-bot/issues/5)) d38b4eb
+
 ## 1.0.0 (2025-01-10)
 
 ### ⚠ BREAKING CHANGES
