@@ -76,7 +76,7 @@ describe('test postMessage with token/channel', () => {
   })
 
   it('should fail if response text is not "ok"', async () => {
-    const response = JSON.stringify({ ok: false })
+    const response = '{"ok":false,"error":"invalid_auth"}'
     nock(slackPostMessageDomain)
       .post(slackPostMessagePath)
       .reply(200, response)
