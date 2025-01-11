@@ -1,6 +1,6 @@
-import verifyConditions from './lib/verifyConditions'
-import success from './lib/success'
-import fail from './lib/fail'
+import verifyConditions from './lib/verifyConditions.js'
+import success from './lib/success.js'
+import fail from './lib/fail.js'
 
 export default {
   verifyConditions,
