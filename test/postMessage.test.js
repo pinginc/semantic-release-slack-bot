@@ -19,7 +19,7 @@ async function postToken(token, channel) {
   channel = channel || slackChannel
   await postMessage(
     { text: 'message' },
-    { log: () => undefined },
+    { log: console.log },
     { slackToken: token, slackChannel: channel }
   )
 }
