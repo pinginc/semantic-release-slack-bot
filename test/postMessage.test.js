@@ -87,7 +87,7 @@ describe('test postMessage with token/channel', () => {
   })
 
   it('should fail if response status code is not 200', async () => {
-    const response = 'error message'
+    const response = '{"ok":false,"error":"invalid_auth"}'
     nock(slackPostMessageDomain)
       .post(slackPostMessagePath)
       .reply(500, response)
