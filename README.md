@@ -1,12 +1,9 @@
-# semantic-release-slack-bot
+# @timebyping/semantic-release-slack-bot
 
-[**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to get release notifications on [slack](https://slack.com) from a slack bot
+[**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to get release notifications on [slack](https://slack.com) from a slack bot. This is a fork of the abandoned [semantic-release-slack-bot](https://www.npmjs.com/package/semantic-release-slack-bot).
 
-[![npm](https://img.shields.io/npm/v/semantic-release-slack-bot.svg?style=flat-square)](https://www.npmjs.com/package/semantic-release-slack-bot)
-[![npm](https://img.shields.io/npm/dm/semantic-release-slack-bot.svg?style=flat-square)](https://www.npmjs.com/package/semantic-release-slack-bot)
-[![CircleCI branch](https://img.shields.io/circleci/project/github/juliuscc/semantic-release-slack-bot/master.svg?style=flat-square)](https://circleci.com/gh/juliuscc/semantic-release-slack-bot)
-[![license](https://img.shields.io/github/license/juliuscc/semantic-release-slack-bot.svg?style=flat-square)](https://github.com/juliuscc/semantic-release-slack-bot/blob/master/LICENSE)
-[![add to slack](https://img.shields.io/badge/Add%20to%20Slack-Semantic%20Release-%234A154B.svg?style=flat-square&logo=slack)](https://slack.com/oauth/authorize?client_id=605439709265.611687593109&scope=incoming-webhook)
+[![npm](https://img.shields.io/npm/v/@timebyping/semantic-release-slack-bot.svg?style=flat-square)](https://www.npmjs.com/package/@timebyping/semantic-release-slack-bot)
+[![npm](https://img.shields.io/npm/dm/@timebyping/semantic-release-slack-bot.svg?style=flat-square)](https://www.npmjs.com/package/@timebyping/semantic-release-slack-bot)
 
 | Step      | Description                                         |
 | --------- | --------------------------------------------------- |
@@ -18,14 +15,36 @@
 Add the plugin to your npm-project:
 
 ```bash
-$ npm install semantic-release-slack-bot -D
+$ npm install @timebyping/semantic-release-slack-bot -D
 ```
 
 ## Requirements
 
 As per the new release of semantic-release library version 20, the library is requiring the use of Node v18, which we need to comply as well to use keep the repo updated with it's latest feature. More information can be found [here](https://github.com/semantic-release/semantic-release/releases/tag/v20.0.0).
 
-## Slack App/Webhook Usage
+## Usage
+
+The simplest usage of this plugin is to add it to your **semantic-release** configuration file with the following:
+
+```json
+{
+  "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+          "@timebyping/semantic-release-slack-bot",
+          {
+              "notifyOnSuccess": true,
+              "slackChannel": "release-notifications"
+          }
+      ]
+  ]
+}
+```
+
+This requires creating a slack token and adding it to your environment variables. The slack token should have the `chat:write` permission scope.
+
+### Slack App / Webhook Usage
 
 The corresponding slack app has to be installed in your slack workspace as well. Follow the instructions under [configuration](#configuration) for more information.
 
@@ -37,7 +56,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "semantic-release-slack-bot",
+      "@timebyping/semantic-release-slack-bot",
       {
         "notifyOnSuccess": false,
         "notifyOnFail": false,
@@ -78,7 +97,7 @@ this library reported that they were able to.
 
 **WARNING: This is not mentioned in the official documentation, so use at your own risk.**
 
-## Slack Access Token/Channel Usage
+### Slack Access Token/Channel Usage
 
 This configuration can be used with a [**bot**](https://api.slack.com/authentication/token-types#bot) Slack Access token with minimum permissions of `chat:write`.
 
@@ -90,7 +109,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "semantic-release-slack-bot",
+      "@timebyping/semantic-release-slack-bot",
       {
         "notifyOnSuccess": false,
         "notifyOnFail": false,
@@ -119,11 +138,6 @@ With this example:
 - Slack notifications are sent on a failure release from branches matching "lts/\*"
 - Slack notifications are sent on a failure or successful release from branch "master"
 - Slack notifications are skipped on all other branches
-
-## Screenshots
-
-![Screenshot of success](images/screenshot-success.png)
-![Screenshot of fail](images/screenshot-fail.png)
 
 ## Configuration
 
