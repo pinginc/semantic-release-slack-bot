@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.4](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.3...v1.1.4) (2025-01-21)
+
+### Bug Fixes
+
+* OWL-2934: carve out response case from slack ([#7](https://github.com/pinginc/semantic-release-slack-bot/issues/7)) 4c4782d
+
 ## [1.1.3](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.2...v1.1.3) (2025-01-13)
 
 ### Other
