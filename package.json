@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@semantic-release/error": "^4.0.0",
-    "@timebyping/eslint-config": "^2.0.4",
+    "@timebyping/eslint-config": "^2.0.5",
     "micromatch": "^4.0.8",
     "slackify-markdown": "^4.3.0"
   },

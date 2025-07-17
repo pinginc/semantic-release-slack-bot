@@ -1324,7 +1324,7 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.3.tgz#282046f03e886e352b2d5f5da5eb755e01457f3f"
   integrity sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==
 
-"@timebyping/eslint-config@^2.0.4":
+"@timebyping/eslint-config@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@timebyping/eslint-config/-/eslint-config-2.0.5.tgz#4d5709dddd90a972dd7a1cb8fe76df86333687f7"
   integrity sha512-dFzOwuBf9HikuB6W/1L7+HAjQuW+Wl3pOO5rADciTHfVNXbhvr+3UqAeQQW3OGhnPMQgCdJ6xt6pajb0SDHkrw==
