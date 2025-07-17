@@ -8,4 +8,13 @@
 
 import config from '@timebyping/eslint-config';
 
-export default config;
+export default [
+  ...config,
+  {
+    rules: {
+      'camelcase': 'off', // JavaScript project uses snake_case for environment variables
+      'no-param-reassign': 'off', // Common pattern in JavaScript libraries
+      '@cspell/spellchecker': 'off', // Custom words in this project
+    },
+  },
+];
