@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.8](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.7...v1.1.8) (2025-07-17)
+
+### Bug Fixes
+
+* incorrect package definition ([#11](https://github.com/pinginc/semantic-release-slack-bot/issues/11)) f66a07c
+
 ## [1.1.7](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.6...v1.1.7) (2025-07-17)
 
 ### Other
