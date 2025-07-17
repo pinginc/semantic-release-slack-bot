@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.7](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.6...v1.1.7) (2025-07-17)
+
+### Other
+
+* OWL-2660: upgrade eslint to 9.0 ([#10](https://github.com/pinginc/semantic-release-slack-bot/issues/10)) 869e01f
+
 ## [1.1.6](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.5...v1.1.6) (2025-02-27)
 
 ### Other
