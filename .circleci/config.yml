@@ -57,6 +57,7 @@ workflows:
       - common/pr-lint:
           context:
             - GITHUB
+            - LINEAR_APP
       - lint:
           context:
             - NPM
