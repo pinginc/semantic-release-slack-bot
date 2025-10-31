@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.9](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.8...v1.1.9) (2025-10-31)
+
+### Other
+
+* ENG-2459: add LINEAR_APP context to pr-lint jobs ([#12](https://github.com/pinginc/semantic-release-slack-bot/issues/12)) 6448d10
+
 ## [1.1.8](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.7...v1.1.8) (2025-07-17)
 
 ### Bug Fixes
