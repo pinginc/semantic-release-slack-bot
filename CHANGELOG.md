@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.12](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.11...v1.1.12) (2026-05-22)
+
+### Bug Fixes
+
+* **ci:** INF-1825: use orb@3 npm trusted publishing ([#16](https://github.com/pinginc/semantic-release-slack-bot/issues/16)) 52e17e2
+
 ## [1.1.11](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.10...v1.1.11) (2026-04-02)
 
 ## [1.1.10](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.9...v1.1.10) (2026-03-11)
