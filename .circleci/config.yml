@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   sumologic: circleci/sumologic@1
-  common: timebyping/common@2
+  common: timebyping/common@3
 parameters:
   executor-tag:
     type: string
@@ -97,7 +97,4 @@ workflows:
             - GITHUB
             - NPM
           executor-tag: << pipeline.parameters.executor-tag >>
-          package-manager: yarn
-          dry-run: false
-          github: true
           npm: true
