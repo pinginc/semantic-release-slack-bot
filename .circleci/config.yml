@@ -1,6 +1,5 @@
 version: 2.1
 orbs:
-  sumologic: circleci/sumologic@1
   common: timebyping/common@3
 parameters:
   executor-tag:
@@ -51,9 +50,6 @@ workflows:
           - << pipeline.git.branch >>
           - main
     jobs:
-      - sumologic/workflow-collector:
-          context:
-            - SUMOLOGIC
       - common/pr-lint:
           context:
             - GITHUB
@@ -74,9 +70,6 @@ workflows:
         - << pipeline.git.branch >>
         - main
     jobs:
-      - sumologic/workflow-collector:
-          context:
-            - SUMOLOGIC
       - lint:
           context:
             - NPM
