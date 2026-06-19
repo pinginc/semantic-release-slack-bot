@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.13](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.12...v1.1.13) (2026-06-19)
+
+### Chores
+
+* **ci:** INF-2245: remove SumoLogic orb ([#17](https://github.com/pinginc/semantic-release-slack-bot/issues/17)) d969f27
+
 ## [1.1.12](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.11...v1.1.12) (2026-05-22)
 
 ### Bug Fixes
