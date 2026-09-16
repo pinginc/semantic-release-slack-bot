@@ -37,7 +37,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^12.0.8",
     "@semantic-release/npm": "^13.1.5",
-    "@timebyping/eslint-config": "^2.0.5",
+    "@timebyping/eslint-config": "^4.0.0",
     "conventional-changelog-conventionalcommits": "^9.3.1",
     "eslint": "^10.0.3",
     "globals": "^17.4.0",
