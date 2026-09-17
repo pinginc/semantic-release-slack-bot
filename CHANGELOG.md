@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.14](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.13...v1.1.14) (2026-09-17)
+
+### Chores
+
+* ENG-3343: adopt the test title rule ([#18](https://github.com/pinginc/semantic-release-slack-bot/issues/18)) 1906039
+
 ## [1.1.13](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.12...v1.1.13) (2026-06-19)
 
 ### Chores
