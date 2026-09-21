@@ -48,5 +48,9 @@
   },
   "peerDependencies": {
     "semantic-release": ">=24.1.0"
+  },
+  "resolutions": {
+    "serialize-javascript": "^7.0.5",
+    "uuid": "^11.1.1"
   }
 }
