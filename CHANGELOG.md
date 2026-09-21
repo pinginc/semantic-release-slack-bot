@@ -3,6 +3,12 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.15](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.14...v1.1.15) (2026-09-21)
+
+### Chores
+
+* **deps:** INF-4006: bump dependencies with medium+ security advisories ([#19](https://github.com/pinginc/semantic-release-slack-bot/issues/19)) 94b9db6
+
 ## [1.1.14](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.13...v1.1.14) (2026-09-17)
 
 ### Chores
