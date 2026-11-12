@@ -1,0 +1,120 @@
+name: CI
+'on':
+  pull_request: {}
+  merge_group: {}
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '26'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install --global yarn@1.22.22
+      - run: yarn install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn run lint
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '26'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install --global yarn@1.22.22
+      - run: yarn install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn run build
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '26'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install --global yarn@1.22.22
+      - run: yarn install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn run test
+      - name: Save test-results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: test-results
+          path: |-
+            test-results/
+            coverage/
+          if-no-files-found: ignore
+          retention-days: 7
+  release:
+    if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}
+    needs:
+      - lint
+      - build
+      - test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    concurrency:
+      group: library-release-${{ github.repository }}
+      cancel-in-progress: false
+    steps:
+      - id: token
+        uses: pinginc/actions/.github/actions/pingci-token@main
+        with:
+          app-client-id: ${{ secrets.PINGCI_APP_CLIENT_ID }}
+          app-private-key: ${{ secrets.PINGCI_APP_PRIVATE_KEY }}
+          fallback-token: ${{ secrets.PINGCI_TOKEN }}
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          token: ${{ steps.token.outputs.token }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '26'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install --global yarn@1.22.22
+      - run: yarn install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn run build
+      - uses: pinginc/actions/.github/actions/library-release@main
+        with:
+          github-token: ${{ steps.token.outputs.token }}
+          slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+          npm-publish: 'true'
