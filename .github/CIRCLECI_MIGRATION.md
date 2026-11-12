@@ -7,3 +7,5 @@ Merge the shared `library-release` action first. Configure the npm trusted publi
 The release rules and changelog sections match the CircleCI orb. Generated files are validated and saved as artifacts; developers commit needed updates. Coverage and test output remain downloadable from Actions. Configure `SLACK_WEBHOOK` for release notifications; external Codecov delivery needs a separate Actions credential handoff.
 
 Apply the required-check policy after these jobs have reported on the PR. Publishing is guarded to main and is not exercised by the PR run.
+
+This public fork does not receive private-only organization secrets. Add repository-scoped `NPM_TOKEN` for the private eslint-config dependency and pinginc-ci App credentials (or `PINGCI_TOKEN`) before merging. The first Actions run confirmed the install currently fails with a 404 for that private package. A trusted publisher is also required for npm releases.
