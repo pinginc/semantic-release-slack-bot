@@ -3,6 +3,8 @@
 See
 [PR Guidelines](http://go/pr) for commit guidelines.
 
+## [1.1.16](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.15...v1.1.16) (2026-11-13)
+
 ## [1.1.15](https://github.com/pinginc/semantic-release-slack-bot/compare/v1.1.14...v1.1.15) (2026-09-21)
 
 ### Chores
