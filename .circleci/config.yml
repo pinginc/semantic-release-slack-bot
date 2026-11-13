@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  common: timebyping/common@3
 parameters:
   executor-tag:
     type: string
@@ -8,40 +6,8 @@ parameters:
     description: |
       Pick a specific circleci/node image variant: https://hub.docker.com/r/cimg/node/tags
 jobs:
-  lint:
-    working_directory: /tmp/src
-    docker:
-      - image: cimg/node:<< pipeline.parameters.executor-tag >>
-    steps:
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
-      - checkout
-      - run: yarn
-      - run: yarn run lint
-  build:
-    working_directory: /tmp/src
-    docker:
-      - image: cimg/node:<< pipeline.parameters.executor-tag >>
-    steps:
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
-      - checkout
-      - run: yarn
-      - run: yarn run build
-  test_spec:
-    working_directory: /tmp/src
-    docker:
-      - image: cimg/node:<< pipeline.parameters.executor-tag >>
-    resource_class: xlarge
-    steps:
-      - run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc
-      - checkout
-      - run: yarn
-      - run: yarn run test
-      - store_test_results:
-          path: test-results
-      - store_artifacts:
-          path: ./test-results
-          destination: test-results
-      - common/coverage
+  migrated-to-github-actions:
+    type: no-op
 workflows:
   developer-branch:
     when:
@@ -50,44 +16,11 @@ workflows:
           - << pipeline.git.branch >>
           - main
     jobs:
-      - common/pr-lint:
-          context:
-            - GITHUB
-            - LINEAR_APP
-      - lint:
-          context:
-            - NPM
-      - build:
-          context:
-            - NPM
-      - test_spec:
-          name: unit tests
-          context:
-            - NPM
+      - migrated-to-github-actions
   main-branch:
     when:
       equal:
         - << pipeline.git.branch >>
         - main
     jobs:
-      - lint:
-          context:
-            - NPM
-      - build:
-          context:
-            - NPM
-      - test_spec:
-          name: unit tests
-          context:
-            - NPM
-      - common/semantic-release:
-          name: semantic release
-          requires:
-            - lint
-            - build
-            - unit tests
-          context:
-            - GITHUB
-            - NPM
-          executor-tag: << pipeline.parameters.executor-tag >>
-          npm: true
+      - migrated-to-github-actions
