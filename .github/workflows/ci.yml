@@ -90,19 +90,10 @@ jobs:
       group: library-release-${{ github.repository }}
       cancel-in-progress: false
     steps:
-      - id: token
-        uses: pinginc/actions/.github/actions/pingci-token@main
-        with:
-          app-client-id: ${{ secrets.PINGCI_APP_CLIENT_ID }}
-          app-private-key: ${{ secrets.PINGCI_APP_PRIVATE_KEY }}
-          fallback-token: ${{ secrets.PINGCI_TOKEN }}
-          permission-contents: write
-          permission-issues: write
-          permission-pull-requests: write
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
-          token: ${{ steps.token.outputs.token }}
+          token: ${{ github.token }}
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: '26'
@@ -113,8 +104,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn run build
-      - uses: pinginc/actions/.github/actions/library-release@main
-        with:
-          github-token: ${{ steps.token.outputs.token }}
-          slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
-          npm-publish: 'true'
+      - name: Install isolated release tools
+        run: bash .github/release/install.sh
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Release the validated main commit
+        run: bash .github/release/release.sh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          LIBRARY_NPM_PUBLISH: 'true'
